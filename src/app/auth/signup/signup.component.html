@@ -1,0 +1,24 @@
+<div class="container  form-container">
+    <h3>Create an account</h3>
+    <form [formGroup]="authForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input formControlName="username" type="text" id="username" name="username" placeholder="Username" />
+        </div>
+        {{$any(authForm.get('username')).errors | json}}
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" id="password" name="password" placeholder="Password" />
+         </div>
+         {{$any(authForm.get('password')).errors | json}}
+        <div class="form-group">
+            <label for="passwordConfirmation">Password Confirmation</label>
+            <input formControlName="passwordConfirmation" type="password" id="passwordConfirmation"
+                name="passwordConfirmation" placeholder="Confirm Password" />
+        </div>
+        {{$any(authForm.get('passwordConfirmation')).errors | json}}
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{{ authForm.errors | json }}

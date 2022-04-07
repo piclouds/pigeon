@@ -28,6 +28,7 @@ export class SignupComponent implements OnInit {
     private uniqueUsername: UniqueUsername) { }
 
   ngOnInit(): void {
+    console.log(this.authForm);
   }
 
 }

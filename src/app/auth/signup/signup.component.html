@@ -1,24 +1,22 @@
 <div class="container  form-container">
     <h3>Create an account</h3>
     <form [formGroup]="authForm">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input formControlName="username" type="text" id="username" name="username" placeholder="Username" />
-        </div>
-        {{$any(authForm.get('username')).errors | json}}
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input formControlName="password" type="password" id="password" name="password" placeholder="Password" />
-         </div>
-         {{$any(authForm.get('password')).errors | json}}
-        <div class="form-group">
-            <label for="passwordConfirmation">Password Confirmation</label>
-            <input formControlName="passwordConfirmation" type="password" id="passwordConfirmation"
-                name="passwordConfirmation" placeholder="Confirm Password" />
-        </div>
-        {{$any(authForm.get('passwordConfirmation')).errors | json}}
+        <app-input [control]="$any(authForm).get('username')" label="Username"></app-input>
+        <app-input [control]="$any(authForm.get('password'))" label="Password" type="password"></app-input>
+        <app-input [control]="$any(authForm.get('passwordConfirmation'))" label="Password Confirmation" type="password">
+        </app-input>
+
+        <ng-container *ngIf="$any(authForm).get('password').touched && $any(authForm).get('passwordConfirmation').touched && $any(authForm).errors">
+            <div *ngIf="$any(authForm).errors['passwordsDontMatch']">
+                <hr>
+                <p class="error">Passwords don't match!</p>
+                <hr>
+            </div>
+        </ng-container>
+
         <button class="btn btn-primary">Submit</button>
     </form>
+
 </div>
 
-{{ authForm.errors | json }}
+<!-- {{ authForm.errors | json }} -->

@@ -1,1 +1,36 @@
-<p>input works!</p>
+<div class="form-group">
+    <label [for]="label">{{label}}</label>
+    <input [type]="type" [placeholder]="label" [formControl]="control">
+    <!-- ERROR HANDLING -->
+    <div *ngIf="showError()" class="form-group-error-area">
+        <!-- Required -->
+        <p *ngIf="$any(control).errors['required']">
+            {{label}} is requried!
+        </p>
+        <!-- Min Length -->
+        <p *ngIf="$any(control).errors['minlength']">
+            {{label}} has to be AT LEAST
+            {{ $any(control).errors['minlength'].requiredLength }}
+            characters long.
+        </p>
+        <!-- Max Length -->
+        <p *ngIf="$any(control).errors['maxlength']">
+            {{label}} has to be AT MOST
+            {{ $any(control).errors['maxlength'].requiredLength }}
+            characters long.
+        </p>
+        <!-- Pattern -->
+        <p *ngIf="$any(control).errors['pattern']">
+            Invalid format.
+        </p>
+        <!-- Unique Username -->
+        <p *ngIf="$any(control).errors['nonUniqueUsername']">
+            Username is taken
+        </p>
+
+        <!-- Connection Error -->
+        <p *ngIf="$any(control).errors['noConnection']">
+            Username check failed due to network connection error. Please try again later.
+        </p>
+    </div>
+</div>

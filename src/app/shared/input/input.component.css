@@ -1,0 +1,13 @@
+p {
+    color: red;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+.form-group input {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+}

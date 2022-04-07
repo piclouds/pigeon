@@ -1,6 +1,7 @@
 # Pigeon
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+Pigeon is an Angular Email client which that communicates with a custom API, built for training and testing purposes.
 
 ## Development server
 

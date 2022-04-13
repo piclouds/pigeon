@@ -28,6 +28,13 @@ h1, h2, h3 {
     background: #333;
     color: #fff;
     cursor: pointer;
+    margin: 5px;
+    margin-left: 0;
+}
+
+.btn-danger {
+    background-color: #c0392b;
+    color: #fff;
 }
 
 .btn:hover {

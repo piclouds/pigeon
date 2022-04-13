@@ -5,6 +5,11 @@ interface UsernameAvailableResponse {
   available: boolean;
 }
 
+interface SignupCredentials {
+  username: string,
+  password: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,5 +23,11 @@ export class AuthService {
       username: username
     });
   }
+
+  // Signup new user
+  signup(credentials: SignupCredentials) {
+    return this.http.post<any>('https://api.angular-email.com/auth/signup', credentials);
+  }
+
 
 }

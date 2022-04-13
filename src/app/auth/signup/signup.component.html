@@ -1,20 +1,21 @@
 <div class="container  form-container">
     <h3>Create an account</h3>
-    <form [formGroup]="authForm">
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
         <app-input [control]="$any(authForm).get('username')" label="Username"></app-input>
         <app-input [control]="$any(authForm.get('password'))" label="Password" type="password"></app-input>
         <app-input [control]="$any(authForm.get('passwordConfirmation'))" label="Password Confirmation" type="password">
         </app-input>
 
-        <ng-container *ngIf="$any(authForm).get('password').touched && $any(authForm).get('passwordConfirmation').touched && $any(authForm).errors">
-            <div *ngIf="$any(authForm).errors['passwordsDontMatch']">
-                <hr>
-                <p class="error">Passwords don't match!</p>
-                <hr>
-            </div>
-        </ng-container>
+        <!-- Handling form errors -->
+        <div
+            *ngIf="$any(authForm).get('password').touched && $any(authForm).get('passwordConfirmation').touched && $any(authForm).errors">
+            <hr>
+            <p *ngIf="$any(authForm).errors['passwordsDontMatch']" class="error">Passwords don't match!</p>
+            <hr>
+        </div>
 
         <button class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-danger">Clear Form</button>
     </form>
 
 </div>

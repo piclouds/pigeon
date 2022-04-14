@@ -36,9 +36,20 @@ export class SignupComponent implements OnInit {
     if(this.authForm.invalid) {
       return;
     }
-    this.authService.signup(this.authForm.value).subscribe(res => {
-      console.log(res);
-    })
+    this.authService.signup(this.authForm.value).subscribe({
+      next: response => {
+        // Nav to destination 
+      },
+      error: error => {
+        // Handle errors
+        if(!error.status) {
+          this.authForm.setErrors({ noConnection: true });
+        } else {
+          this.authForm.setErrors({ unknownError: true });
+        }
+      }
+    }
+    )
   }
 
 }

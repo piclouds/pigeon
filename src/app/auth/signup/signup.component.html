@@ -11,6 +11,8 @@
             *ngIf="$any(authForm).get('password').touched && $any(authForm).get('passwordConfirmation').touched && $any(authForm).errors">
             <hr>
             <p *ngIf="$any(authForm).errors['passwordsDontMatch']" class="error">Passwords don't match!</p>
+            <p *ngIf="$any(authForm).errors['unknownError']" class="error">An unknown error occured. Please try again later.</p>
+            <p *ngIf="$any(authForm).errors['noConnection']" class="error">Signup failed. Check your network status.</p>
             <hr>
         </div>
 

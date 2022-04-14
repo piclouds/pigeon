@@ -1,0 +1,26 @@
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 10px 25px;
+    min-height: 70px;
+    line-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    margin-bottom: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul a {
+    color: black;
+    padding: 10px 25px;
+    text-decoration: none;
+}

@@ -4,10 +4,13 @@
         <h1 class="logo"><a routerLink="/"> Pigeon</a></h1>
         <nav>
             <ul>
-                <li><a routerLink="/inbox" routerLinkActive="active">Inbox</a></li>
-                <li *ngIf="isSignedin$ | async" ><a routerLink="/signout" routerLinkActive="active">Sign Out</a></li>
+                <ng-container *ngIf="isSignedin$ | async">
+                    <li><a routerLink="/inbox" routerLinkActive="active">Inbox</a></li>
+                    <li><a routerLink="/signout" routerLinkActive="active">Sign Out</a></li>
+                </ng-container>
                 <ng-container *ngIf="!(isSignedin$ | async)">
-                    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Sign In</a></li>
+                    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Sign
+                            In</a></li>
                     <li><a routerLink="/signup" routerLinkActive="active">Sign Up</a></li>
                 </ng-container>
             </ul>

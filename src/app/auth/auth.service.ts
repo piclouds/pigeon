@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter, tap } from 'rxjs';
 
 interface UsernameAvailableResponse {
   available: boolean;
@@ -12,7 +12,17 @@ interface SignupCredentials {
   passwordConfiguration: string
 }
 
+interface SigninCredentials {
+  username: string,
+  password: string
+}
+
 interface SignupResponse {
+  username: string
+}
+
+interface SignedinResponse {
+  authenticated: boolean,
   username: string
 }
 
@@ -35,8 +45,38 @@ export class AuthService {
 
   // Signup new user
   signup(credentials: SignupCredentials) {
-    return this.http.post<SignupResponse>(this.authUrl + 'signup', credentials);
+    return this.http.post<SignupResponse>(this.authUrl + 'signup', credentials).pipe(
+      tap(() => {
+        this.isSignedin$.next(true);
+      })
+    );
   }
 
+  // Signin user
+  signin(credentials: SigninCredentials) {
+    return this.http.post(this.authUrl + 'signin', credentials).pipe(
+      tap(() => {
+        this.isSignedin$.next(true);
+      })
+    )
+  }
+
+  // Is user signed in
+  checkAuth() {
+    return this.http.get<SignedinResponse>(this.authUrl + 'signedin').pipe(
+      tap(({authenticated}) => {
+        this.isSignedin$.next(authenticated);
+      })
+    )
+  }
+
+  // Sign use out
+  signout() {
+    return this.http.post(this.authUrl + 'signout', {}).pipe(
+      tap(() => {
+        this.isSignedin$.next(false);
+      })
+    )
+  }
 
 }

@@ -1,1 +1,23 @@
-<p>signin works!</p>
+<div class="container  form-container">
+    <h3>Sign In</h3>
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <app-input [control]="$any(authForm).get('username')" label="Username"></app-input>
+        <app-input [control]="$any(authForm.get('password'))" label="Password" type="password"></app-input>
+        
+        <!-- Handling form errors -->
+        <div
+            *ngIf="$any(authForm).errors">
+            <hr>
+            <p *ngIf="$any(authForm).errors['credentials']" class="error">Invalid username or password.</p>
+            <p *ngIf="$any(authForm).errors['unknownError']" class="error">An unknown error occured. Please try again later.</p>
+            <p *ngIf="$any(authForm).errors['noConnection']" class="error">Signin failed. Check your network status.</p>
+            <hr>
+        </div>
+
+        <button class="btn btn-primary">Sign in</button>
+        <!-- <button type="reset" class="btn btn-danger">Clear Form</button> -->
+    </form>
+
+</div>
+
+<!-- {{ authForm.errors | json }} -->

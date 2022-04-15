@@ -32,7 +32,7 @@ interface SignedinResponse {
 export class AuthService {
   authUrl = "https://api.angular-email.com/auth/"
   
-  isSignedin$ = new BehaviorSubject(false);
+  isSignedin$ = new BehaviorSubject<boolean | null>(null);
 
   constructor(private http: HttpClient) { }
 

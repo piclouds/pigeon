@@ -10,6 +10,10 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   isSignedin$: BehaviorSubject<boolean>;
   constructor(private authService: AuthService) {
-    this.isSignedin$ = this.authService.isSignedin$
+    this.isSignedin$ = this.authService.isSignedin$;
+  }
+
+  ngOnInit() {
+    this.authService.checkAuth().subscribe(() => {});
   }
 }

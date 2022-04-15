@@ -1,0 +1,10 @@
+<div *ngIf="email" class="email-container">
+    <header>
+        <h3>{{ email.subject }}</h3>
+        <p>from: <span class="email-address">{{ email.from }}</span></p>
+        <p>to: <span class="email-address">{{ email.to }}</span></p>
+    </header>
+    <main>
+        <p>{{ email.text }}</p>
+    </main>
+</div>

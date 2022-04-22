@@ -4,7 +4,7 @@
     <a [routerLink]="email['id']">
         <div class="card">
             <h3 class="email-title">{{ showEmailSubject(email.subject) }}</h3>
-            <p class="email-sender">From: <span class="sender">{{ email.from }}</span></p>
+            <p class="email-address">From: <span class="address">{{ email.from }}</span></p>
         </div>
     </a>
 </ng-container>

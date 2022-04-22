@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { EmailService } from '../email.service';
 import { EmailBodyResponse } from '../models/email-body-response';
 
@@ -14,24 +15,30 @@ export class EmailShowComponent implements OnInit {
 
   constructor(
     private emailService: EmailService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    // this.emailService.getEmail(this.route.snapshot.params['id']).subscribe(response => {
-    //   this.email = response;
-    // });
-
     // Get update from parameters
-    this.route.params.subscribe(params => {
-      if (!params['id'])
-        return;
-
-      // Get selected email
-      this.emailService.getEmail(params['id']).subscribe(response => {
-        this.email = response;
+    this.route.params.pipe(
+      switchMap(({ id }) => {
+        return this.emailService.getEmail(id);
       })
+    ).subscribe((email) => {
+      this.email = email;
     })
+
+    // subscribe(params => {
+    //   if (!params['id'])
+    //     return;
+
+    //   // Get selected email
+    //   this.emailService.getEmail(params['id']).subscribe(response => {
+    //     this.email = response;
+    //   })
+    // })
   }
+
 
 }

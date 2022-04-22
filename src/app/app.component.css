@@ -8,10 +8,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    background: #333;
+    color: white;
+
+    margin-bottom: 15px;
 }
 
 .logo {
     margin-bottom: 0;
+    color: white;
+
 }
 
 nav ul {
@@ -20,11 +27,11 @@ nav ul {
 }
 
 nav ul a {
-    color: black;
+    color: white;
     padding: 10px 25px;
     text-decoration: none;
 }
 
-nav ul a.active {
-    border-bottom: 1px solid black;
+nav ul a:hover, nav ul a.active  {
+    background-color: #222;
 }

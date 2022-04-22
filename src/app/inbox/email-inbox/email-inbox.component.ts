@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EmailService } from '../email.service';
 import { EmailsResponse } from '../models/emails-response';
 
@@ -13,14 +14,13 @@ export class EmailInboxComponent implements OnInit {
 
   emails: EmailsResponse[] = [];
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService, private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
     // Fetch list of emails
     this.emailService.getEmails().subscribe(response => {
       this.emails = response;
-      console.log(response);
     });
   }
 

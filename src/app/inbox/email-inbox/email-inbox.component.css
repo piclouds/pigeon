@@ -1,47 +1,32 @@
-.card {
-    /* box-sizing: border-box; */
-    /* display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    justify-content: space-around; */
-
-    overflow: hidden;
-    padding: 5px 5px;
-    border: 1px solid #ddd;
-
-    cursor: pointer;
-
+.email-list {
     width: 100%;
-
-    background-color: #455a6f;
+    max-width: 250px;
 }
-.card:hover {
+.content {
+    width: 90%;
+}
+.item {
     background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 10px;
+    border-bottom: 1px dotted #ecf0f1;
 }
-
-.card.active {
-    background-color: #2c3e50;
-}
-
-a {
+.item a {
     color: #ecf0f1;
     text-decoration: none;
 }
-
-.card .email-title {
-    margin-bottom: 0;
-    padding-bottom: 3px;
-    /* border-bottom: 1px; */
+.header {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
-
-.card .email-address {
-    margin-bottom: 0;
-    /* font-style: italic; */
-    /* color: gray; */
-}
-.address{
-    color: #56bafd;
-    text-decoration: underline;
+.address {
     font-style: italic;
+}
+.trim {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    /* white-space: nowrap; */
+    /* /* overflow: hidden; */
 }

@@ -1,13 +1,27 @@
-<ng-container *ngFor="let email of emails">
+<div class="email-list">
+    <div class="item" *ngFor="let email of emails">
+        <a [routerLink]="email.id" routerLinkActive="active">
+            <div class="content">
+                <div class="header trim">
+                    {{ email.subject }}
+                </div>
+                <p class="address trim">
+                    <i class="fas fa-at"></i> {{ email.from }}
+                </p>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- <ng-container *ngFor="let email of emails">
 
 
     <a [routerLink]="email['id']">
-        <div class="card">
-            <h3 class="email-title">{{ showEmailSubject(email.subject) }}</h3>
-            <p class="email-address">From: <span class="address">{{ email.from }}</span></p>
+        <div class="card content">
+            <h3 class="email-title trim">{{ email.subject }}</h3>
+            <p class="email-address trim">From: <span class="address">{{ email.from }}</span></p>
         </div>
     </a>
-</ng-container>
+</ng-container> -->
 <div class="card" *ngIf="!emails.length">
     <p>No emails yet. :(</p>
 </div>

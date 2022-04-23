@@ -1,10 +1,11 @@
-<div *ngIf="email" class="email-container">
+<div  class="email-container">
     <header>
         <h3>{{ email.subject }}</h3>
         <p>from: <span class="email-address">{{ email.from }}</span></p>
         <p>to: <a href=""><span class="email-address">{{ email.to }}</span></a></p>
     </header>
     <main>
-        <p>{{ email.text }}</p>
+        <p [innerHTML]="email.html"></p>
     </main>
 </div>
+

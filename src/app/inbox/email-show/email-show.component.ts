@@ -1,7 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
-import { EmailService } from '../email.service';
 import { EmailBodyResponse } from '../models/email-body-response';
 
 @Component({
@@ -11,34 +9,28 @@ import { EmailBodyResponse } from '../models/email-body-response';
 })
 export class EmailShowComponent implements OnInit {
 
-  email: EmailBodyResponse | null = null;
+  email!: EmailBodyResponse;
 
   constructor(
-    private emailService: EmailService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    // Pre-fetch to get avoid undefined email value on page load
+    // Check '/inbox/email-resolver.service.ts'
+    this.route.data.subscribe(({ email }) => {
+      this.email = email;
+    })
+  }
 
   ngOnInit(): void {
     // Get update from parameters
-    this.route.params.pipe(
-      switchMap(({ id }) => {
-        return this.emailService.getEmail(id);
-      })
-    ).subscribe((email) => {
-      this.email = email;
-    })
 
-    // subscribe(params => {
-    //   if (!params['id'])
-    //     return;
-
-    //   // Get selected email
-    //   this.emailService.getEmail(params['id']).subscribe(response => {
-    //     this.email = response;
+    // this.route.params.pipe(
+    //   switchMap(({ id }) => {
+    //     return this.emailService.getEmail(id);
     //   })
+    // ).subscribe((email) => {
+    //   this.email = email;
     // })
   }
-
-
 }

@@ -23,11 +23,4 @@ export class EmailInboxComponent implements OnInit {
       this.emails = response;
     });
   }
-
-  // Summerize long subjects
-  showEmailSubject(title: string): string {
-    return (title.length > 16) ? title.substring(0, 25) + "..." : title;
-
-  }
-
 }
